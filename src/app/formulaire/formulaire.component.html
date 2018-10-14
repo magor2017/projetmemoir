@@ -1,0 +1,43 @@
+<div id="form" >
+	<table class="table table-condensed table-striped">
+		<tr>
+			<td>Titre</td>
+			<td>Etat</td>
+			<td>Action</td>
+		</tr>
+		<tr *ngFor="let form of forms">
+			<td>{{form.titre}}</td>
+			<td>actif</td>
+			<td><input type="button" (click)="showModal(reponse,form)" class="btn btn-primary" value="repondre" /></td>
+		</tr>
+	</table>
+	<!--
+	<form>
+		<fieldset id="rasta">
+			<legend>{{titre}}</legend>
+		</fieldset>
+	</form>
+	<div>
+		<input type="button" class="btn btn-success" value="valider" />
+	</div>
+  -->
+</div>
+<ng-template #reponse>
+	   <div class="modal-header">
+				<button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Nouveau Client</h4>
+		</div>
+		<div class="modal-body">
+			<form>
+				<fieldset id="rasta">
+					<legend>{{titre}}</legend>
+				</fieldset>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<input type="button"  value="valider" class="btn btn-success" />
+			<input type="button" (click)="hideModal()" value="annuler"  class="btn btn-danger" />
+		</div>
+</ng-template>

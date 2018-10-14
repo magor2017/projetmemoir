@@ -1,0 +1,21 @@
+<div style="margin-bottom:10px">
+	
+		<p>info</p>
+	
+</div>
+<div class="row">
+	<div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+		<nav>
+		   <ul class="list-group" >
+			 <li class="list-group-item" style="background-color:#FF5733;color:white"><a  style="color:white">Campagne</a></li>
+			 <li class="list-group-item" style="background-color:#FF5733;color:white"><a [routerLink]="['/admin','questionnaire']" style="color:white">Questionnaire</a></li>
+			  <li class="list-group-item" style="background-color:#FF5733;color:white"><a href="#" style="color:white">Reponse</a></li>
+			 <li class="list-group-item" style="background-color:#FF5733;color:white"><a href="#" style="color:white">Historique</a></li>	
+			 <li class="list-group-item" style="background-color:#FF5733;color:white"><a href="#" style="color:white">Comptabilite</a></li>	
+		   </ul>
+		</nav>
+	</div>
+	<div class="col-lg-offset-1 col-md-offset-1 col-xs-offset-1 col-lg-7 col-md-7 col-xs-7 col-sm-7">
+		<router-outlet></router-outlet>
+	</div>
+</div>
