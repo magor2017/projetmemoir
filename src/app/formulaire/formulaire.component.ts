@@ -82,10 +82,13 @@ export class FormulaireComponent implements OnInit {
 				let label=document.createElement("label");
 				label.textContent=Questions[i].question;
 				div.appendChild(label);
+				let br=document.createElement("br");
+				div.appendChild(br);
 				let Form=document.getElementById("rasta");
 				switch(Questions[i].typeInput){
 					case "1":{
 						let select=document.createElement("select");
+						select.setAttribute('id',Questions[i].name);
 						for(let j=0;j<Questions[i].reponses.length;j++){
 							let option=document.createElement("option");
 							option.textContent=Questions[i].reponses[j];
@@ -102,7 +105,7 @@ export class FormulaireComponent implements OnInit {
 						    samadiv.setAttribute('class','form-inline');
 							let option=document.createElement("input");
 							option.setAttribute('type','radio');
-							option.setAttribute('name','rasta');
+							option.setAttribute('name',Questions[i].name);
 							samadiv.appendChild(option);
 							let samalabel=document.createElement("label");
 							samalabel.textContent=Questions[i].reponses[j];
@@ -123,6 +126,9 @@ export class FormulaireComponent implements OnInit {
   }
   hideModal(){
 	this.modalreponse.hide();
+  }
+  valider(){
+	let Questions=JSON.parse(form.questions);
   }
 
 }

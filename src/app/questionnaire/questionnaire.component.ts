@@ -55,6 +55,7 @@ export class QuestionnaireComponent implements OnInit {
   }
   ajouter(){
    let reps=[];
+   let name=0;
     switch(this.form){
     case "2":{
     //question ouverte
@@ -80,19 +81,21 @@ export class QuestionnaireComponent implements OnInit {
 			let label=document.createElement('label');
             label.textContent=this.question;
             div.appendChild(label);
+            name=Date.now();
             let select=document.createElement('select');
+            select.setAttribute('id',name);
             select.setAttribute('class','form-control');
             let tabRep=[];
             for(let i=1;i<=this.nbReponse;i++){
 				let option=document.createElement('option');
 				try{
-				 //  option.textContent=document.getElementById('reponse'+i).value;
+				   option.textContent=document.getElementById('reponse'+i).value;
 				}catch(e){
 				   console.log(e);
 				}
 				//tabReq.push(document.getElementById('reponse'+i).value);
 				try{
-				   // reps.push(document.getElementById('reponse'+i).value);
+				    reps.push(document.getElementById('reponse'+i).value);
 				}catch(e){
 					console.log(e);
 				}
@@ -110,6 +113,7 @@ export class QuestionnaireComponent implements OnInit {
 			div1.setAttribute('class','form-group');
 			let label=document.createElement('label');
             label.textContent=this.question;
+            name=Date.now();
             div1.appendChild(label);
            // let select=document.createElement('select');
             //select.setAttribute('class','form-control');
@@ -119,9 +123,9 @@ export class QuestionnaireComponent implements OnInit {
 				let radio=document.createElement('input');
 				radio.setAttribute('type','radio');
 				
-				radio.setAttribute('name','afi');
+				radio.setAttribute('name',name);
 				try{
-				   //radio.textContent=document.getElementById('reponse'+i).value;
+				   radio.textContent=document.getElementById('reponse'+i).value;
 				}catch(e){
 				  console.log(e);
 				}
@@ -130,7 +134,7 @@ export class QuestionnaireComponent implements OnInit {
 				//lab.textContent=document.getElementById('reponse'+i).value;
 				 try{
 				     //lab.textContent=document.getElementById('reponse'+i).value;
-				     //reps.push(document.getElementById('reponse'+i).value);
+				     reps.push(document.getElementById('reponse'+i).value);
 				  }catch(e){
 				     console.log(e);
 				  }
@@ -148,7 +152,7 @@ export class QuestionnaireComponent implements OnInit {
        break;
     }
     }
-    let question={type:this.form,question:this.question,reponses:reps,typeInput:this.type_question_fermer,poid:this.poid};
+    let question={type:this.form,question:this.question,reponses:reps,typeInput:this.type_question_fermer,poid:this.poid,name:name,id:name};
     this.formulaire.questions.push(question);
     console.log(question);
     console.log(this.formulaire);
