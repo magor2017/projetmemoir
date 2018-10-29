@@ -13,6 +13,7 @@ export class FormulaireComponent implements OnInit {
   forms=[];
   titre:string;
   modalreponse:BsModalRef;
+  questions:any;
   constructor(private etudiantService:EtudiantService,private bsModal:BsModalService){}
   ngOnInit() {
     
@@ -72,6 +73,7 @@ export class FormulaireComponent implements OnInit {
 	//this.reponse.show();
 	this.titre=form.titre;
 	 let data=form;
+	 this.questions=form;
 	 let Questions=JSON.parse(form.questions);
 	 console.log(Questions);
            // this.titre=data.titre;
@@ -128,7 +130,13 @@ export class FormulaireComponent implements OnInit {
 	this.modalreponse.hide();
   }
   valider(){
-	let Questions=JSON.parse(form.questions);
+	let Questions=JSON.parse(this.questions.questions);
+	let rep1=document.getElementById(Questions[0].id).value;
+	let id=sessionStorage.getItem("id");
+	let token=sessionStorage.getItem("token");
+	console.log(id);
+	console.log(token);
+	console.log(rep1);
   }
 
 }
