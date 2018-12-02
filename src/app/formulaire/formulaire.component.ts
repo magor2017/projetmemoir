@@ -73,6 +73,7 @@ export class FormulaireComponent implements OnInit {
 	//this.reponse.show();
 	this.titre=form.titre;
 	 let data=form;
+	 console.log(data);
 	 this.questions=form;
 	 let Questions=JSON.parse(form.questions);
 	 console.log(Questions);
@@ -131,12 +132,17 @@ export class FormulaireComponent implements OnInit {
   }
   valider(){
 	let Questions=JSON.parse(this.questions.questions);
-	let rep1=document.getElementById(Questions[0].id).value;
-	let id=sessionStorage.getItem("id");
-	let token=sessionStorage.getItem("token");
-	console.log(id);
-	console.log(token);
-	console.log(rep1);
+	let reponse=[];
+	console.log(Questions);
+	for(let i=0;i<Questions.length;i++){
+		console.log((<HTMLInputElement>document.getElementById(Questions[i].id)).value);
+		let realReponse=(<HTMLInputElement>document.getElementById(Questions[i].id)).value;
+		let rep={id:Questions[i].id,question:Questions[i].question,reponse:realReponse};
+		reponse.push(rep);
+	}
+	this.etudiantService.validerReponse(JSON.stringify(reponse),parseInt(this.questions.idForm)).then(rep => {
+		console.log(rep);
+	});
   }
 
 }

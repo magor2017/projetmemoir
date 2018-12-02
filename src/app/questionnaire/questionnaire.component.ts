@@ -83,19 +83,19 @@ export class QuestionnaireComponent implements OnInit {
             div.appendChild(label);
             name=Date.now();
             let select=document.createElement('select');
-            select.setAttribute('id',name);
+            select.setAttribute('id',name.toString());
             select.setAttribute('class','form-control');
             let tabRep=[];
             for(let i=1;i<=this.nbReponse;i++){
 				let option=document.createElement('option');
 				try{
-				   option.textContent=document.getElementById('reponse'+i).value;
+				   option.textContent=(<HTMLInputElement>document.getElementById('reponse'+i)).value;
 				}catch(e){
 				   console.log(e);
 				}
 				//tabReq.push(document.getElementById('reponse'+i).value);
 				try{
-				    reps.push(document.getElementById('reponse'+i).value);
+				    reps.push((<HTMLInputElement>document.getElementById('reponse'+i)).value);
 				}catch(e){
 					console.log(e);
 				}
@@ -123,9 +123,9 @@ export class QuestionnaireComponent implements OnInit {
 				let radio=document.createElement('input');
 				radio.setAttribute('type','radio');
 				
-				radio.setAttribute('name',name);
+				radio.setAttribute('name',name.toString());
 				try{
-				   radio.textContent=document.getElementById('reponse'+i).value;
+				   radio.textContent=(<HTMLInputElement>document.getElementById('reponse'+i)).value;
 				}catch(e){
 				  console.log(e);
 				}
@@ -134,7 +134,7 @@ export class QuestionnaireComponent implements OnInit {
 				//lab.textContent=document.getElementById('reponse'+i).value;
 				 try{
 				     //lab.textContent=document.getElementById('reponse'+i).value;
-				     reps.push(document.getElementById('reponse'+i).value);
+				     reps.push((<HTMLInputElement>document.getElementById('reponse'+i)).value);
 				  }catch(e){
 				     console.log(e);
 				  }
