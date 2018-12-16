@@ -19,6 +19,8 @@ import { Routing }        from './app.routing';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { EtudiantComponent } from './etudiant/etudiant.component';
 import { FormulaireComponent } from './formulaire/formulaire.component';
+import { CampagneComponent } from './campagne/campagne.component';
+import { UpdateCampagneComponent } from './update-campagne/update-campagne.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { FormulaireComponent } from './formulaire/formulaire.component';
     AdminComponent,
     QuestionnaireComponent,
     EtudiantComponent,
-    FormulaireComponent
+    FormulaireComponent,
+    CampagneComponent,
+    UpdateCampagneComponent
   ],
   imports: [
     BrowserModule,

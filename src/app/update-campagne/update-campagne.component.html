@@ -1,0 +1,119 @@
+<table style="background-color: tomato" class="col-lg-5 col-md-5 col-xs-5 col-sm-5 table table-striped table-condensed" >
+  <tr>
+    <td>Campagne</td>
+    <td>Objectif</td>
+  </tr>
+  <tr style="background-color: tomato">
+    <td style="color:white">{{campagne.nom}}</td>
+    <td style="color:white">{{campagne.objectif}}</td>
+  </tr>
+</table>
+<div style="text-align: center;width:100%;margin-top:10px">
+    <b><i style="color:white">Formulaire</i></b>
+</div>
+<div *ngIf="form">
+  <table class="table table-condensed table-striped">
+    <tr>
+      <td>Nom</td>
+      <td>Action</td>
+    </tr>
+    <tr *ngFor="let f of formulaire">
+      <td>{{f.titre}}</td>
+      <td>
+        <input type="button" value="supprimer" class="btn btn-danger" />
+        <input type="button" (click)="showModalCible(cible,f)" value="cibler" class="btn btn-primary" />
+        <input type="button" (click)="showModalDetail(detail)" value="voir Cible" class="btn btn-primary" />
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <button (click)="showModal(reponse)" class="btn btn-success btn-lg">ajouter formulaire</button>
+  <button (click)="validerModification()"  class="btn btn-success btn-lg pull-right">valider les modifications</button>
+</div>
+<ng-template #reponse>
+    <div class="modal-header">
+       <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+         <span aria-hidden="true">&times;</span>
+       </button>
+       <h4 class="modal-title" id="myModalLabel">Nouveau Formulairet</h4>
+   </div>
+   <div class="modal-body">
+     <table class="table table-condensed table-striped" style="width:100%">
+       <tr>
+         <td>Titre</td>
+         <td>Action</td>
+       </tr>
+       <tr *ngFor="let f of newForm">
+         <td>{{f.titre}}</td>
+         <td>
+           <input  class="btn btn-success" (click)="ajouterForm(f)" type="button" value="ajouter" />
+           <input style="margin-left: 5px" class="btn btn-primary" type="button" value="voir" />
+         </td>
+       </tr>
+     </table>
+   </div>
+   <div class="modal-footer">
+     <!--<input type="button" (click)="valider()"  value="valider" class="btn btn-success" />-->
+     <input type="button" (click)="hideModal()" value="fermer"  class="btn btn-danger" />
+   </div>
+</ng-template>
+<ng-template #cible>
+    <div class="modal-header">
+       <button type="button" class="close pull-right" aria-label="Close" (click)="hideModalCible()">
+         <span aria-hidden="true">&times;</span>
+       </button>
+       <h4 class="modal-title" id="myModalLabel">Ajout Cible</h4>
+   </div>
+   <div class="modal-body">
+     <div class="row">
+       <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
+          <select name="niveau" [(ngModel)]="niveau">
+            <option value="l1">L1</option>
+            <option value="l2">L2</option>
+            <option value="l3">L3</option>
+            <option value="m1">M1</option>
+            <option value="m2">M2</option>
+          </select>
+       </div>
+       <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
+         <input name="classe" [(ngModel)]="classe" type="text" placeholder="ex:baf,ir,sjp" />
+       </div>
+       <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+          <button (click)="ajouterCible()" class="btn btn-success" >ajouter</button>
+        </div>
+     </div>
+     <div>
+       <table class="table table-condensed">
+         <tr>
+           <td>Niveau</td>
+           <td>Classe</td>
+         </tr>
+         <tr *ngFor="let c of newCible">
+           <td>{{c.niveau}}</td>
+           <td>{{c.classe}}</td>
+         </tr>
+       </table>
+     </div>
+   </div>
+   <div class="modal-footer">
+     <input type="button" (click)="validerAjoutcible()"  value="valider" class="btn btn-success" />
+     <input type="button" (click)="hideModalCible()" value="fermer"  class="btn btn-danger" />
+   </div>
+</ng-template>
+<ng-template #detail>
+    <div class="modal-header">
+       <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+         <span aria-hidden="true">&times;</span>
+       </button>
+       <h4 class="modal-title" id="myModalLabel">Nouveau Formulairet</h4>
+   </div>
+   <div class="modal-body">
+     <p>detail here</p>
+   </div>
+   <div class="modal-footer">
+     <!--<input type="button" (click)="valider()"  value="valider" class="btn btn-success" />-->
+     <input type="button" (click)="hideModal()" value="fermer"  class="btn btn-danger" />
+   </div>
+</ng-template>
+

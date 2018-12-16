@@ -21,4 +21,79 @@ export class AdminService {
      
      });
    }
+   newCampagne(nom:string,objectif:string){
+      let params="param="+JSON.stringify({nom:nom,objectif:objectif});
+      let lien=this.link+"/newCampagne";
+      return new Promise((resolve,reject)=>{
+        this.http.post(lien,params,{headers:this.header}).subscribe(response =>{
+           resolve(response);
+        });
+    
+    });
+   }
+   listCampagne(){
+    let params="param=";
+    let lien=this.link+"/listeCampagne";
+    return new Promise((resolve,reject)=>{
+      this.http.post(lien,params,{headers:this.header}).subscribe(response =>{
+         resolve(response);
+      });
+    });
+   }
+   affectation(){
+     let params="";
+     let lien=this.link+"/affecterForm";
+     return new Promise((resolve,reject)=>{
+      this.http.post(lien,params,{headers:this.header}).subscribe(response =>{
+         resolve(response);
+      });
+    });
+   }
+   getFormulaire(){
+    let params="";
+    let lien=this.link+"/getForm";
+    return new Promise((resolve,reject)=>{
+     this.http.post(lien,params,{headers:this.header}).subscribe(response =>{
+        resolve(response);
+     });
+   });
+  }
+  validerAjoutForm(form:any,id:any){
+    let params="param="+JSON.stringify({form:JSON.stringify(form),id:id});
+    let lien=this.link+"/validerAjoutForm";
+    return new Promise((resolve,reject)=>{
+     this.http.post(lien,params,{headers:this.header}).subscribe(response =>{
+        resolve(response);
+     });
+   });
+  }
+  getAllCible(){
+    let params="param=";
+    let lien=this.link+"/getAllCible";
+    return new Promise((resolve,reject)=>{
+     this.http.post(lien,params,{headers:this.header}).subscribe(response =>{
+        resolve(response);
+     });
+   });
+
+  }
+  validerAjoutCible(campagne:any,form:any,niveau:any,classe:any){
+    let params="param="+JSON.stringify({campagne:campagne,form:form,niveau:niveau,classe:classe});
+    let lien=this.link+"/validerAjoutCible";
+    return new Promise((resolve,reject)=>{
+     this.http.post(lien,params,{headers:this.header}).subscribe(response =>{
+        resolve(response);
+     });
+   });
+  }
+  voirCible(campagne:any,form:any){
+    let params="param="+JSON.stringify({campagne:campagne,form:form});
+    let lien=this.link+"/validerAjoutCible";
+    return new Promise((resolve,reject)=>{
+     this.http.post(lien,params,{headers:this.header}).subscribe(response =>{
+        resolve(response);
+     });
+   });
+
+  }
 }

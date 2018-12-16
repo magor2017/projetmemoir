@@ -1,0 +1,56 @@
+
+     <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 style="text-align:center">Gestionnaire de Campagne</h2>
+        </div>
+        <div class="panel-body">
+          <div>
+              <a href="#newCampagne" style="padding-left: 4rem; padding-right: 4rem;"   data-toggle="tab">Creer une Campagne</a>
+              <a href="#updateCampagne" style="padding-left: 4rem; padding-right: 4rem;"  data-toggle="tab">Modifier une Campagne </a>
+              <a href="#listeCampagne" style="padding-left: 4rem; padding-right: 4rem;"  data-toggle="tab">liste des Campagnes </a>
+          </div>
+          <div style="margin-top:10px" class="tab-content">
+            <div class="tab-pane fade in" id="newCampagne">
+              <form>
+                <fieldset>
+                  <legend>Nouvelle Campagne</legend>
+                  <div class="form-group">
+                    <label>Nom Campagne</label>
+                    <input type="text" name="nomCampagne" [(ngModel)]="nomCampagne" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label>Objectif</label>
+                      <input type="text" [(ngModel)]="objectifCampagne" name="objectifCampagne" class="form-control">
+                  </div>
+                  
+                  <input type="button" (click)="newCampagne()" class="btn btn-success" value="valider" />
+                </fieldset>
+              </form>
+            </div>
+            <div class="tab-pane fade in" id="updateCampagne">
+               <p>update campagne</p>
+            </div>
+            <div class="tab-pane fade in active" id="listeCampagne">
+                <table class="table table-striped table-condensed"> 
+                    <tr>
+                      <td>Nom</td>
+                      <td>Objectif</td>
+                      <td>Etat</td>
+                      <td>Action</td>
+                    </tr>
+                    <tr *ngFor="let c of listeCampagne">
+                      <td>{{c.nom}}</td>
+                      <td>{{c.objectif}}</td>
+                      <td>{{c.etat}}</td>
+                      <td>
+                        <input class="btn btn-primary" type="button" value="resultat" />
+                        <input class="btn btn-primary" (click)="updateCampagne(c)" type="button" value="modifier" />
+                      </td>
+                    </tr>
+                </table>
+             </div>
+          </div>
+        </div>
+
+     </div>
+

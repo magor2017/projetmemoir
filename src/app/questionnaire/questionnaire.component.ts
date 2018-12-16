@@ -30,6 +30,7 @@ export class QuestionnaireComponent implements OnInit {
  poid:number=1;
  titre:string="";
  errorTitre:boolean=false;
+ formulaireAaffecter:any;
  //questions:{type:0,question:'',reponses:[],typeInput:0};
  formulaire={titre:this.titre,questions:[]};
 // @ViewChild('mag') private ele:ElementRef;
@@ -194,6 +195,13 @@ export class QuestionnaireComponent implements OnInit {
   }
   reinitilise_errorTitre(){
     this.errorTitre=false;
+  }
+  affecter(){
+    this.adminservice.affectation().then(rep =>{
+      console.log(rep);
+      this.formulaireAaffecter=JSON.parse(rep['_body']);
+      console.log(this.formulaireAaffecter);
+    });
   }
 
 }

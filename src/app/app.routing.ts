@@ -6,13 +6,17 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { LoginComponent } from './login/login.component';
 import { EtudiantComponent } from './etudiant/etudiant.component';
 import { FormulaireComponent } from './formulaire/formulaire.component';
+import { CampagneComponent } from './campagne/campagne.component';
+import { UpdateCampagneComponent } from './update-campagne/update-campagne.component';
 
 const appRoutes: Routes =[
            { path :'',component:LoginComponent},
            { path:'admin',component:AdminComponent,
                children:[
 							
-							{path : 'questionnaire',component:QuestionnaireComponent}
+                            {path : 'questionnaire',component:QuestionnaireComponent},
+                            {path : 'campagne',component:CampagneComponent},
+                            {path : 'updateCampagne',component:UpdateCampagneComponent}
                ]
                },
            { path :'login',component:LoginComponent},
