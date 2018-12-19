@@ -51,7 +51,7 @@ export class AdminService {
    }
    getFormulaire(){
     let params="";
-    let lien=this.link+"/getForm";
+    let lien=this.link+"/getFormee";
     return new Promise((resolve,reject)=>{
      this.http.post(lien,params,{headers:this.header}).subscribe(response =>{
         resolve(response);
@@ -88,7 +88,26 @@ export class AdminService {
   }
   voirCible(campagne:any,form:any){
     let params="param="+JSON.stringify({campagne:campagne,form:form});
-    let lien=this.link+"/validerAjoutCible";
+    let lien=this.link+"/voirCible";
+    return new Promise((resolve,reject)=>{
+     this.http.post(lien,params,{headers:this.header}).subscribe(response =>{
+        resolve(response);
+     });
+   });
+
+  }
+  getCampagneById(id:number){
+    let params="param="+JSON.stringify({id:id});
+    let lien=this.link+"/getCampagneById";
+    return new Promise((resolve,reject)=>{
+     this.http.post(lien,params,{headers:this.header}).subscribe(response =>{
+        resolve(response);
+     });
+   });
+  }
+  supprimerFormulaire(form:any,id:number){
+    let params="param="+JSON.stringify({form:form,id:id});
+    let lien=this.link+"/supprimerFormulaire";
     return new Promise((resolve,reject)=>{
      this.http.post(lien,params,{headers:this.header}).subscribe(response =>{
         resolve(response);

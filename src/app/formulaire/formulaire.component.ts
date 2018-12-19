@@ -14,12 +14,35 @@ export class FormulaireComponent implements OnInit {
   titre:string;
   modalreponse:BsModalRef;
   questions:any;
+  idCamp:number;
   constructor(private etudiantService:EtudiantService,private bsModal:BsModalService){}
   ngOnInit() {
     
         this.etudiantService.getForm().then( response =>{
-           this.forms=JSON.parse(response["_body"]);
-            console.log(JSON.parse(response["_body"]))
+			console.log(response);
+			console.log(JSON.parse(response['_body']));
+			let rep=JSON.parse(response['_body']);
+			if(rep.length>0){
+				console.log(rep[0].campagne);
+				console.log(JSON.parse(rep[0].campagne.forms));
+				for(let i=0;i<rep.length;i++){
+					let idform=parseInt(rep[i].idform);
+					let formCam=JSON.parse(rep[i].campagne.forms);
+					console.log(formCam);
+					for(let j=0;j<formCam.length;j++){
+						if(parseInt(formCam[j].id)==idform){
+							rep[i].campagne.forms=JSON.parse(rep[i].campagne.forms);
+							console.log(rep[i].campagne.forms);
+							this.forms.push(rep[i].campagne);
+							console.log(this.forms);
+						}
+					}
+
+				}
+			}
+			
+           // this.forms=JSON.parse(rep[0].campagne);
+          //  console.log(JSON.parse(response["_body"]))
            /* let data=JSON.parse(response["_body"]);
             this.titre=data.titre;
             for(let i=0;i<data.questions.length;i++){
@@ -69,8 +92,10 @@ export class FormulaireComponent implements OnInit {
         
   }
  // ViewChild('reponse') public reponse :ModalDirective;
-  showModal(template:any,form:any){
+  showModal(template:any,camp:any){
 	//this.reponse.show();
+	let form=camp.forms[0];
+	this.idCamp=parseInt(camp.idCam);
 	this.titre=form.titre;
 	 let data=form;
 	 console.log(data);
@@ -133,14 +158,15 @@ export class FormulaireComponent implements OnInit {
   valider(){
 	let Questions=JSON.parse(this.questions.questions);
 	let reponse=[];
-	console.log(Questions);
+	console.log(this.questions);
 	for(let i=0;i<Questions.length;i++){
 		console.log((<HTMLInputElement>document.getElementById(Questions[i].id)).value);
 		let realReponse=(<HTMLInputElement>document.getElementById(Questions[i].id)).value;
 		let rep={id:Questions[i].id,question:Questions[i].question,reponse:realReponse};
 		reponse.push(rep);
 	}
-	this.etudiantService.validerReponse(JSON.stringify(reponse),parseInt(this.questions.idForm)).then(rep => {
+	console.log(this.idCamp);
+	this.etudiantService.validerReponse(JSON.stringify(reponse),parseInt(this.questions.id),this.idCamp).then(rep => {
 		console.log(rep);
 	});
   }

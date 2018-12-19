@@ -6,7 +6,7 @@
 			<td>Action</td>
 		</tr>
 		<tr *ngFor="let form of forms">
-			<td>{{form.titre}}</td>
+			<td>{{form.forms[0].titre}}</td>
 			<td>actif</td>
 			<td><input type="button" (click)="showModal(reponse,form)" class="btn btn-primary" value="repondre" /></td>
 		</tr>
@@ -27,7 +27,7 @@
 				<button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">Nouveau Client</h4>
+				<h4 class="modal-title" id="myModalLabel">Reponse</h4>
 		</div>
 		<div class="modal-body">
 			<form>

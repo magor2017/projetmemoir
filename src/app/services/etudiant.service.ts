@@ -15,17 +15,16 @@ private token=sessionStorage.getItem("token");
 	this.header.append('Content-Type','application/x-www-form-urlencoded');
   }
   getForm(){
-    
+    let params="param="+JSON.stringify({id:this.id,token:this.token});
+    let url=this.link+"/getForm";
     return new Promise((resolve,reject)=>{
-        let params="param";
-        let url=this.link+"/getForm";
         this.http.post(url,params,{headers:this.header}).subscribe(res =>{
             resolve(res);
         });
      });
   }
-  validerReponse(reponse:any,idForm:number){
-    let params="param="+JSON.stringify({token:this.token,id:this.id,reponse:reponse,idForm:idForm});
+  validerReponse(reponse:any,idForm:number,idCamp:number){
+    let params="param="+JSON.stringify({token:this.token,id:this.id,reponse:reponse,idForm:idForm,idCamp:idCamp});
     let url=this.link+"/validerReponse";
     return new Promise((resolve,reject)=>{
       this.http.post(url,params,{headers:this.header}).subscribe(res =>{

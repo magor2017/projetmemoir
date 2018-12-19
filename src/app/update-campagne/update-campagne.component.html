@@ -20,9 +20,9 @@
     <tr *ngFor="let f of formulaire">
       <td>{{f.titre}}</td>
       <td>
-        <input type="button" value="supprimer" class="btn btn-danger" />
+        <input type="button" (click)="supprimerFormulaire(f)" value="supprimer" class="btn btn-danger" />
         <input type="button" (click)="showModalCible(cible,f)" value="cibler" class="btn btn-primary" />
-        <input type="button" (click)="showModalDetail(detail)" value="voir Cible" class="btn btn-primary" />
+        <input type="button" (click)="showModalDetail(detail,f)" value="voir Cible" class="btn btn-primary" />
       </td>
     </tr>
   </table>
@@ -103,17 +103,26 @@
 </ng-template>
 <ng-template #detail>
     <div class="modal-header">
-       <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+       <button type="button" class="close pull-right" aria-label="Close" (click)="hideModalDetail()">
          <span aria-hidden="true">&times;</span>
        </button>
-       <h4 class="modal-title" id="myModalLabel">Nouveau Formulairet</h4>
+       <h4 class="modal-title" id="myModalLabel">liste des cibles</h4>
    </div>
    <div class="modal-body">
-     <p>detail here</p>
+    <table class="table table-condensed">
+      <tr>
+        <td>Niveau</td>
+        <td>Classe</td>
+      </tr>
+      <tr *ngFor="let c of listeCible">
+        <td>{{c.niveau}}</td>
+        <td>{{c.classe}}</td>
+      </tr>
+    </table>
    </div>
    <div class="modal-footer">
      <!--<input type="button" (click)="valider()"  value="valider" class="btn btn-success" />-->
-     <input type="button" (click)="hideModal()" value="fermer"  class="btn btn-danger" />
+     <input type="button" (click)="hideModalDetail()" value="fermer"  class="btn btn-danger" />
    </div>
 </ng-template>
 

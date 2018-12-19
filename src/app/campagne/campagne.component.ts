@@ -33,7 +33,8 @@ export class CampagneComponent implements OnInit {
   }
   updateCampagne(campagne:any){
     //console.log(campagne);
-    sessionStorage.setItem("campagne",JSON.stringify(campagne));
+   // sessionStorage.setItem("campagne",JSON.stringify(campagne));
+    sessionStorage.setItem("id",campagne.id);
     this.route.navigate(["/admin","updateCampagne"]);
   }
   
