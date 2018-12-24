@@ -26,6 +26,7 @@ export class UpdateCampagneComponent implements OnInit {
   formTempon:any=undefined;
   listeCible:any=[];
   cibleTempon:any=[];
+  cible:any;
 
   constructor(private bsModal:BsModalService,private adminService:AdminService) { }
 
@@ -88,7 +89,9 @@ export class UpdateCampagneComponent implements OnInit {
   }
   validerAjoutForm(form:any,id:any){
     this.adminService.validerAjoutForm(form,id).then(rep =>{
-       console.log(JSON.parse(rep['_body']));
+     // if(rep['status']==200 && rep['_body']=="ok"){
+         this.hideModal();
+     // }
     });
 
   }
@@ -98,6 +101,7 @@ export class UpdateCampagneComponent implements OnInit {
       this.cibleTempon=JSON.parse(rep['_body']);
       console.log(this.cibleTempon);
     });
+   // return this.cibleTempon;
     this.modalcible=this.bsModal.show(template);
     /*this.adminService.voirCible(this.campagne.id,form.id).then(rep =>{
       this.listeCible=[];
@@ -230,8 +234,10 @@ export class UpdateCampagneComponent implements OnInit {
     });
   }
   showModalDetail(template:any,f:any){
-    this.modaldetail=this.bsModal.show(template);
     this.voirCible(f);
+    this.modaldetail=this.bsModal.show(template);
+   // this.cible=this.voirCible(f);
+    //console.log(this.cible);
   }
   hideModalDetail(){
     this.modaldetail.hide();
@@ -239,6 +245,7 @@ export class UpdateCampagneComponent implements OnInit {
   }
   voirCible(f:any){
     console.log(this.campagne.id);
+    let cib="";
   //  console.log(this.formTempon.id);
     console.log(this.campagne.id);
     this.adminService.voirCible(this.campagne.id,f.id).then(rep =>{
@@ -251,9 +258,12 @@ export class UpdateCampagneComponent implements OnInit {
             console.log(cl);
             for(let i=0;i<niv.length;i++){
                 let c={niveau:niv[i],classe:cl[i]};
+               // console.log(c);
+               // cib+=niv[i]+cl[i]+", ";
                 this.listeCible.push(c);
             }
-            console.log(rep);
+           // console.log(rep);
+           // return cib;
         }
     });
   }
@@ -269,12 +279,12 @@ export class UpdateCampagneComponent implements OnInit {
           }
         }
         this.adminService.supprimerFormulaire(JSON.stringify(newf),parseInt(this.campagne.id)).then(rep =>{
-          if(parseInt(rep['status'])==200 && rep['_body']=="ok"){
+         // if(parseInt(rep['status'])==200 && rep['_body']=="ok"){
             console.log(rep['_body']);
             this.formulaire=newf;
-          }else{
-            console.log(rep);
-          }
+         // }else{
+         //   console.log(rep);
+         // }
 
         });
    }

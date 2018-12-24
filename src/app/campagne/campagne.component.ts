@@ -12,6 +12,8 @@ export class CampagneComponent implements OnInit {
   nomCampagne:string;
   objectifCampagne:string;
   listeCampagne:any;
+  listeBool:boolean=true;
+  newCampagneBool:boolean=false;
 
   constructor(private adminService:AdminService,private route:Router) { }
 
@@ -36,6 +38,19 @@ export class CampagneComponent implements OnInit {
    // sessionStorage.setItem("campagne",JSON.stringify(campagne));
     sessionStorage.setItem("id",campagne.id);
     this.route.navigate(["/admin","updateCampagne"]);
+  }
+  resultatCampagne(campagne:any){
+    sessionStorage.setItem("id",campagne.id);
+    this.route.navigate(["/admin","resultat"]);
+
+  }
+  afficheListeCampagne(){
+    this.listeBool=true;
+    this.newCampagneBool=false;
+  }
+  affichenewCampagne(){
+    this.listeBool=false;
+    this.newCampagneBool=true;
   }
   
 

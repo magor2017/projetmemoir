@@ -20,6 +20,8 @@ export class QuestionnaireComponent implements OnInit {
      return this.type;
    }
  };*/
+ creebool:boolean=true;
+ modifierbool:boolean=false;
  form:string;
  type_question_fermer:string;
  ouverte:boolean=false;
@@ -202,6 +204,14 @@ export class QuestionnaireComponent implements OnInit {
       this.formulaireAaffecter=JSON.parse(rep['_body']);
       console.log(this.formulaireAaffecter);
     });
+  }
+  afficherNewQuestionnaire(){
+    this.creebool=true;
+    this.modifierbool=false;
+  }
+  afficherModification(){
+    this.creebool=false;
+    this.modifierbool=true;
   }
 
 }

@@ -21,6 +21,7 @@ import { EtudiantComponent } from './etudiant/etudiant.component';
 import { FormulaireComponent } from './formulaire/formulaire.component';
 import { CampagneComponent } from './campagne/campagne.component';
 import { UpdateCampagneComponent } from './update-campagne/update-campagne.component';
+import { ResultatComponent } from './resultat/resultat.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UpdateCampagneComponent } from './update-campagne/update-campagne.compo
     EtudiantComponent,
     FormulaireComponent,
     CampagneComponent,
-    UpdateCampagneComponent
+    UpdateCampagneComponent,
+    ResultatComponent
   ],
   imports: [
     BrowserModule,

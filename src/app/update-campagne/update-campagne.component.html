@@ -1,34 +1,37 @@
-<table style="background-color: tomato" class="col-lg-5 col-md-5 col-xs-5 col-sm-5 table table-striped table-condensed" >
-  <tr>
+<table class="col-lg-5 col-md-5 col-xs-5 col-sm-5 table table-striped table-condensed" >
+  <tr style="background-color: #A52A2A;color:white">
     <td>Campagne</td>
     <td>Objectif</td>
   </tr>
-  <tr style="background-color: tomato">
-    <td style="color:white">{{campagne.nom}}</td>
-    <td style="color:white">{{campagne.objectif}}</td>
+  <tr style="font-size: 1.5em">
+    <td style="color:whitesmoke"><b>{{campagne.nom}}</b></td>
+    <td style="color:whitesmoke"><b>{{campagne.objectif}}</b></td>
   </tr>
 </table>
-<div style="text-align: center;width:100%;margin-top:10px">
-    <b><i style="color:white">Formulaire</i></b>
+<div style="background-color: #003366;box-shadow: 8px 8px 12px #aaa;border-radius: 20px 20px 20px 20px">
+  <h1 style="text-align:center;color:white"><b><i>QUESTIONNAIRES</i></b></h1>
 </div>
 <div *ngIf="form">
   <table class="table table-condensed table-striped">
-    <tr>
+    <tr style="background-color: #A52A2A;color:white">
       <td>Nom</td>
+      <td>Cibles</td>
       <td>Action</td>
     </tr>
     <tr *ngFor="let f of formulaire">
       <td>{{f.titre}}</td>
+      <td>l1ir</td>
       <td>
-        <input type="button" (click)="supprimerFormulaire(f)" value="supprimer" class="btn btn-danger" />
+        
         <input type="button" (click)="showModalCible(cible,f)" value="cibler" class="btn btn-primary" />
-        <input type="button" (click)="showModalDetail(detail,f)" value="voir Cible" class="btn btn-primary" />
+       <input type="button" (click)="showModalDetail(detail,f)" value="detail" class="btn btn-primary" />
+        <input type="button" (click)="supprimerFormulaire(f)" value="supprimer" class="btn btn-danger" />
       </td>
     </tr>
   </table>
 </div>
 <div>
-  <button (click)="showModal(reponse)" class="btn btn-success btn-lg">ajouter formulaire</button>
+  <button (click)="showModal(reponse)" class="btn btn-success btn-lg">ajouter questionnaire</button>
   <button (click)="validerModification()"  class="btn btn-success btn-lg pull-right">valider les modifications</button>
 </div>
 <ng-template #reponse>
@@ -36,7 +39,7 @@
        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
          <span aria-hidden="true">&times;</span>
        </button>
-       <h4 class="modal-title" id="myModalLabel">Nouveau Formulairet</h4>
+       <h4 class="modal-title" id="myModalLabel">Nouveau Questionnaire</h4>
    </div>
    <div class="modal-body">
      <table class="table table-condensed table-striped" style="width:100%">

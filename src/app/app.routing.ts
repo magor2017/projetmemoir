@@ -8,6 +8,7 @@ import { EtudiantComponent } from './etudiant/etudiant.component';
 import { FormulaireComponent } from './formulaire/formulaire.component';
 import { CampagneComponent } from './campagne/campagne.component';
 import { UpdateCampagneComponent } from './update-campagne/update-campagne.component';
+import { ResultatComponent} from './resultat/resultat.component';
 
 const appRoutes: Routes =[
            { path :'',component:LoginComponent},
@@ -16,7 +17,8 @@ const appRoutes: Routes =[
 							
                             {path : 'questionnaire',component:QuestionnaireComponent},
                             {path : 'campagne',component:CampagneComponent},
-                            {path : 'updateCampagne',component:UpdateCampagneComponent}
+                            {path : 'updateCampagne',component:UpdateCampagneComponent},
+                            {path : 'resultat',component:ResultatComponent}
                ]
                },
            { path :'login',component:LoginComponent},
