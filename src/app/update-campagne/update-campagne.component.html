@@ -32,7 +32,7 @@
 </div>
 <div>
   <button (click)="showModal(reponse)" class="btn btn-success btn-lg">ajouter questionnaire</button>
-  <button (click)="validerModification()"  class="btn btn-success btn-lg pull-right">valider les modifications</button>
+  <button (click)="validerModification()"  class="btn btn-success btn-lg pull-right">diffuser campagne</button>
 </div>
 <ng-template #reponse>
     <div class="modal-header">
@@ -45,10 +45,12 @@
      <table class="table table-condensed table-striped" style="width:100%">
        <tr>
          <td>Titre</td>
+         <td>Poids</td>
          <td>Action</td>
        </tr>
        <tr *ngFor="let f of newForm">
          <td>{{f.titre}}</td>
+         <input type="number" [(ngModel)]="poidQuestionnaire" name="poidQuestionnaire" min="1" />
          <td>
            <input  class="btn btn-success" (click)="ajouterForm(f)" type="button" value="ajouter" />
            <input style="margin-left: 5px" class="btn btn-primary" type="button" value="voir" />

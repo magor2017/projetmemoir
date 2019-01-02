@@ -11,7 +11,7 @@ import { parse } from 'querystring';
   styleUrls: ['./update-campagne.component.css']
 })
 export class UpdateCampagneComponent implements OnInit {
-  campagne:any;
+  campagne:any={nom:""};
   formulaire:any=[];
   form:boolean=true;
   modalreponse:BsModalRef;
@@ -27,6 +27,7 @@ export class UpdateCampagneComponent implements OnInit {
   listeCible:any=[];
   cibleTempon:any=[];
   cible:any;
+  poidQuestionnaire:number=1;
 
   constructor(private bsModal:BsModalService,private adminService:AdminService) { }
 
@@ -53,6 +54,7 @@ export class UpdateCampagneComponent implements OnInit {
   showModal(template:any){
     this.getFormulaire();
     this.modalreponse=this.bsModal.show(template);
+    this.poidQuestionnaire=1;
   }
   hideModal(){
     this.modalreponse.hide();
@@ -83,9 +85,13 @@ export class UpdateCampagneComponent implements OnInit {
     });
   }
   ajouterForm(form:any){
-    this.formulaire.push(form);
+    let f=form;
+    f.poid=this.poidQuestionnaire;
+    console.log(f);
+    this.formulaire.push(f);
     this.validerAjoutForm(this.formulaire,this.campagne.id);
     console.log(this.formulaire);
+    this.poidQuestionnaire=1;
   }
   validerAjoutForm(form:any,id:any){
     this.adminService.validerAjoutForm(form,id).then(rep =>{

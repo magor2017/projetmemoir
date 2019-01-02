@@ -1,14 +1,15 @@
-<div id="form" >
+<p *ngIf="messageExiteForm" class="alert alert-success"><b>Pas de questionnaires a remplire</b></p>
+<div *ngIf="existeForme" id="form" >
 	<table class="table table-condensed table-striped">
-		<tr>
+		<tr style="background-color:#A52A2A;color:white">
 			<td>Titre</td>
 			<td>Etat</td>
 			<td>Action</td>
 		</tr>
-		<tr *ngFor="let form of forms">
-			<td>{{form.forms[0].titre}}</td>
+		<tr *ngFor="let form of forms let i=index">
+			<td>{{form.forms[i].titre}}</td>
 			<td>actif</td>
-			<td><input type="button" (click)="showModal(reponse,form)" class="btn btn-primary" value="repondre" /></td>
+			<td><input type="button" (click)="showModal(reponse,form,i)" class="btn btn-primary" value="repondre" /></td>
 		</tr>
 	</table>
 	<!--
@@ -27,7 +28,7 @@
 				<button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">Reponse</h4>
+				<h4 class="modal-title" id="myModalLabel">Reponse Aux Questions</h4>
 		</div>
 		<div class="modal-body">
 			<form>

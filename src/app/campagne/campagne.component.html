@@ -74,10 +74,14 @@
           <tr *ngFor="let c of listeCampagne">
             <td>{{c.nom}}</td>
             <td>{{c.objectif}}</td>
-            <td>{{c.etat}}</td>
+            <td>{{etatCampagne(c.etat)}}</td>
             <td>
-              <input style="margin-right: 0.5em" class="btn btn-primary" (click)="resultatCampagne(c)" type="button" value="resultat" />
-              <input class="btn btn-primary" (click)="updateCampagne(c)" type="button" value="modifier" />
+              <input style="margin-right: 0.5em" class="btn btn-primary" (click)="updateCampagne(c)" type="button" value="detail" />
+              <input *ngIf="c.etat==0" style="margin-right: 0.5em" class="btn btn-primary" type="button" value="diffuser" />
+              <input *ngIf="c.etat==1" disabled style="margin-right: 0.5em" class="btn btn-primary" type="button" value="diffuser" />
+              <input *ngIf="c.etat==1"  class="btn btn-primary" (click)="resultatCampagne(c)" type="button" value="resultat" />
+              <input *ngIf="c.etat==0" disabled  class="btn btn-primary" (click)="resultatCampagne(c)" type="button" value="resultat" />
+              
             </td>
           </tr>
       </table>

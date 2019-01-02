@@ -52,6 +52,21 @@ export class CampagneComponent implements OnInit {
     this.listeBool=false;
     this.newCampagneBool=true;
   }
+  etatCampagne(etat:any){
+    let state="";
+    switch(etat){
+      case 1:{
+        state="diffusee";
+        break;
+      }
+      case 0:{
+        state="initialisee";
+        break;
+      }
+    }
+    return state;
+
+  }
   
 
 }

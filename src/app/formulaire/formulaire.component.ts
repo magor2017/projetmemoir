@@ -3,6 +3,7 @@ import { EtudiantService } from '../services/etudiant.service';
 //import { ModalDirective,ModalModule } from 'ng2-bootstrap';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { ValueTransformer } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-formulaire',
@@ -15,6 +16,8 @@ export class FormulaireComponent implements OnInit {
   modalreponse:BsModalRef;
   questions:any;
   idCamp:number;
+  existeForme:boolean=false;
+  messageExiteForm:boolean=false;
   constructor(private etudiantService:EtudiantService,private bsModal:BsModalService){}
   ngOnInit() {
     
@@ -23,15 +26,18 @@ export class FormulaireComponent implements OnInit {
 			console.log(JSON.parse(response['_body']));
 			let rep=JSON.parse(response['_body']);
 			if(rep.length>0){
+				this.existeForme=true;
 				console.log(rep[0].campagne);
-				console.log(JSON.parse(rep[0].campagne.forms));
+				//console.log(JSON.parse(rep[0].campagne.forms));
 				for(let i=0;i<rep.length;i++){
 					let idform=parseInt(rep[i].idform);
-					let formCam=JSON.parse(rep[i].campagne.forms);
+					let formCam=rep[i].campagne.forms;
+					//let formCam=JSON.parse(rep[i].campagne.forms);
 					console.log(formCam);
 					for(let j=0;j<formCam.length;j++){
 						if(parseInt(formCam[j].id)==idform){
-							rep[i].campagne.forms=JSON.parse(rep[i].campagne.forms);
+							rep[i].campagne.forms=rep[i].campagne.forms;
+							//rep[i].campagne.forms=JSON.parse(rep[i].campagne.forms);
 							console.log(rep[i].campagne.forms);
 							this.forms.push(rep[i].campagne);
 							console.log(this.forms);
@@ -39,6 +45,8 @@ export class FormulaireComponent implements OnInit {
 					}
 
 				}
+			}else{
+				this.messageExiteForm=true;
 			}
 			
            // this.forms=JSON.parse(rep[0].campagne);
@@ -92,9 +100,9 @@ export class FormulaireComponent implements OnInit {
         
   }
  // ViewChild('reponse') public reponse :ModalDirective;
-  showModal(template:any,camp:any){
+  showModal(template:any,camp:any,i:number){
 	//this.reponse.show();
-	let form=camp.forms[0];
+	let form=camp.forms[i];
 	this.idCamp=parseInt(camp.idCam);
 	this.titre=form.titre;
 	 let data=form;
@@ -119,7 +127,9 @@ export class FormulaireComponent implements OnInit {
 						select.setAttribute('id',Questions[i].name);
 						for(let j=0;j<Questions[i].reponses.length;j++){
 							let option=document.createElement("option");
-							option.textContent=Questions[i].reponses[j];
+							let tabrep=Questions[i].reponses[j].split("#");
+							option.setAttribute('value',tabrep[1]);
+							option.textContent=tabrep[0];
 							select.appendChild(option);
 						}
 						console.log(select);
@@ -132,11 +142,13 @@ export class FormulaireComponent implements OnInit {
 						    let samadiv=document.createElement("div");
 						    samadiv.setAttribute('class','form-inline');
 							let option=document.createElement("input");
+							let tabrep=Questions[i].reponses[j].split("#");
 							option.setAttribute('type','radio');
 							option.setAttribute('name',Questions[i].name);
+							option.setAttribute('value',tabrep[1]);
 							samadiv.appendChild(option);
 							let samalabel=document.createElement("label");
-							samalabel.textContent=Questions[i].reponses[j];
+							samalabel.textContent=tabrep[0];
 							samadiv.appendChild(samalabel);
 							radio.appendChild(samadiv);
 						}
@@ -159,13 +171,39 @@ export class FormulaireComponent implements OnInit {
 	let Questions=JSON.parse(this.questions.questions);
 	let reponse=[];
 	console.log(this.questions);
+	let valu="";
 	for(let i=0;i<Questions.length;i++){
-		console.log((<HTMLInputElement>document.getElementById(Questions[i].id)).value);
-		let realReponse=(<HTMLInputElement>document.getElementById(Questions[i].id)).value;
-		let rep={id:Questions[i].id,question:Questions[i].question,reponse:realReponse};
-		reponse.push(rep);
+		switch(Questions[i].typeInput){
+		case "1":{
+			//console.log((<HTMLInputElement[]><any>document.getElementsByName(Questions[i].id))[0].value);
+			let valu=(<HTMLInputElement>document.getElementById(Questions[i].id)).value;
+			let realReponse=valu;
+			let rep={poid:Questions[i].poid,id:Questions[i].id,question:Questions[i].question,reponse:realReponse};
+			//console.log(realReponse);
+			reponse.push(rep);
+			break;
+		}
+		case "2":{
+			let tabvalues=(<HTMLInputElement[]><any>document.getElementsByName(Questions[i].id));
+			for(let i=0;i<tabvalues.length;i++){
+				if(tabvalues[i].checked){
+					console.log(tabvalues[i].value);
+					valu=tabvalues[i].value;
+				}
+			}
+			//console.log((<HTMLInputElement[]><any>document.getElementsByName(Questions[i].id))[0].value);
+			let realReponse=valu;
+			let rep={poid:Questions[i].poid,id:Questions[i].id,question:Questions[i].question,reponse:realReponse};
+			//console.log(realReponse);
+			reponse.push(rep);
+			break;
+		}
+		default:{
+			console.log("erreur !!!");
+		}
+	  }
 	}
-	console.log(this.idCamp);
+	console.log(reponse);
 	this.etudiantService.validerReponse(JSON.stringify(reponse),parseInt(this.questions.id),this.idCamp).then(rep => {
 		console.log(rep);
 	});

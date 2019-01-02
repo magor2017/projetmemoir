@@ -11,21 +11,14 @@
   </table>
 </div>
 <div class="row">
-  <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
       <div class="card card-stats" style="box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);background-color: rgb(85, 42, 165)">
           <div class="card-body">
             <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                 <div class="numbers">
-                  <p class="card-category" style="color: white">Cibles</p>
-                  <h3 class="card-title" style="color: white">160</h3>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <div class="icon-big text-center">
-                  <div class="icon-warning">
-                    <i  class="fa fa-list-alt" style="color: white;font-size: 62px"></i> <p  style="color: white;cursor: pointer;">voir la liste</p>
-                  </div>
+                  <p class="card-category" style="color: white;text-align:center">Cibles</p>
+                  <h3 class="card-title" style="color: white;text-align:center">{{nbcible}}</h3>
                 </div>
               </div>
             </div>
@@ -39,24 +32,24 @@
       </div> 
 
   </div>
-  <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
     
       <div class="card card-stats" style="box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);background-color: rgb(42, 165, 104)">
           <div class="card-body">
           <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
               <div class="numbers">
-                <p class="card-category" style="color: white">Reponses</p>
-                <h3 class="card-title" style="color: white">100</h3>
+                <p class="card-category" style="color: white;text-align:center">Reponses</p>
+                <h3 class="card-title" style="color: white;text-align:center">{{cibleRep}}</h3>
               </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
               <div class="icon-big text-center">
                 <div class="icon-warning">
                   <i  class="fa fa-list-alt" style="color: white;font-size: 62px"></i> <p  style="color: white;cursor: pointer;">voir la liste</p>
                 </div>
               </div>
-            </div>
+            </div>-->
           </div>
          <!-- <div class="card-footer" style="background-color: white">
             <div class="stats" >
@@ -67,24 +60,24 @@
         </div>
       </div>   
   </div>
-  <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
     
       <div class="card card-stats" style="box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);background-color: #FF0000">
           <div class="card-body">
           <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
               <div class="numbers">
-                <p class="card-category" style="color: white">Restants</p>
-                <h3 class="card-title" style="color: white">60</h3>
+                <p class="card-category" style="color: white;text-align:center">Restants</p>
+                <h3 class="card-title" style="color: white;text-align:center">{{cibleRestant}}</h3>
               </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
               <div class="icon-big text-center">
                 <div class="icon-warning">
                 <i  class="fa fa-list-alt" style="color: white;font-size: 62px"></i> <p  style="color: white;cursor: pointer;">voir la liste</p>
                 </div>
               </div>
-            </div>
+            </div>-->
           </div>
          <!-- <div class="card-footer" style="background-color: white">
             <div class="stats" >
@@ -95,6 +88,34 @@
         </div>
       </div>
   </div>
+  <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+    
+    <div class="card card-stats" style="box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);background-color:blue">
+        <div class="card-body">
+        <div class="row">
+          <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <div class="numbers">
+              <p class="card-category" style="color: white;text-align:center">Moyenne</p>
+              <h3 class="card-title" style="color: white;text-align:center">{{getMoyenneCampagne()}}</h3>
+            </div>
+          </div>
+         <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="icon-big text-center">
+              <div class="icon-warning">
+              <i  class="fa fa-list-alt" style="color: white;font-size: 62px"></i> <p  style="color: white;cursor: pointer;">voir la liste</p>
+              </div>
+            </div>
+          </div>-->
+        </div>
+       <!-- <div class="card-footer" style="background-color: white">
+          <div class="stats" >
+            <i class="fa fa-refresh"></i>
+            Update now
+          </div>
+        </div>-->
+      </div>
+    </div>
+</div>
 </div>
 <div style="background-color: #003366;box-shadow: 8px 8px 12px #aaa;border-radius: 20px 20px 20px 20px">
   <h1 style="text-align:center;color:white"><b><i>QUESTIONNAIRES</i></b></h1>
@@ -106,15 +127,17 @@
       <th><b><i>CIBLES</i></b></th>
       <th><b><i>REPONSES</i></b></th>
       <th><b><i>RESTANTS</i></b></th>
+      <th><b><i>MOYENNE</i></b></th>
       <th><b><i>ACTIONS</i></b></th>
     </tr>
     <tr *ngFor="let f of formulaires">
       <td>{{f.titre}}</td>
-      <td>20</td>
-      <td>15</td>
-      <td>5</td>
+      <td>{{getnbCibleFormTotal(f.id)}}</td>
+      <td>{{getnbCibleFormRep(f.id)}}</td>
+      <td>{{getnbCibleFormTotal(f.id)-getnbCibleFormRep(f.id)}}</td>
+      <td>{{getMoyenneQuestionnaire(f.id)}}</td>
       <td>
-        <input (click)="showModalDetail(detail)" type="button" class="btn btn-primary" value="detail"/>
+        <input (click)="showModalDetail(detail,f)" type="button" class="btn btn-primary" value="detail"/>
       </td>
     </tr>
 
@@ -125,49 +148,29 @@
        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModalDetail()">
          <span aria-hidden="true">&times;</span>
        </button>
-       <h4 class="modal-title" id="myModalLabel"><b><i>DETAIL QUESTIONNAIRE</i></b></h4>
+       <h4 style="text-align: center" class="modal-title" id="myModalLabel"><b><i>DETAIL QUESTIONNAIRE</i></b></h4>
    </div>
    <div class="modal-body">
-     <div>
-       <P>Question 1</P>
-      <table class="table table-condensed table-striped">
-        <tr>
-          <th>Reponses</th>
-          <th>Nombre</th>
-          <th>Pourcentage</th>
-        </tr>
-        <tr>
-          <td>reponse 1</td>
-          <td>20</td>
-          <td>10%</td>
-        </tr>
-        <tr>
-            <td>reponse 2</td>
-            <td>20</td>
-            <td>10%</td>
-          </tr>
-      </table>
-     </div>
-     <div>
-        <P>Question 2</P>
-       <table class="table table-condensed table-striped">
+     <p style="text-align: center;font-size: 1.2em">{{detailQ.titre}}</p>
+     <div *ngFor="let q of detailquestion ;let i=index">
+       <p><label style="margin-right: 0.7em;"><b>{{i+1}}-</b></label>{{q.question}}</p>
+       <table style="margin-left: 1.1em" class="table table-condensed table-striped">
          <tr>
-           <th>Reponses</th>
-           <th>Nombre</th>
-           <th>Pourcentage</th>
+           <td>Reponses</td>
+           <td>Poid</td>
+           <td>Valeur</td>
+           <td>Nombre</td>
+           <td>Pourcentage</td>
          </tr>
-         <tr>
-           <td>reponse 1</td>
-           <td>20</td>
-           <td>10%</td>
+         <tr *ngFor="let rep of q.reponses">
+           <td>{{rep.split("#")[0]}}</td>
+           <td>{{q.poid}}</td>
+           <td>{{rep.split("#")[1]}}</td>
+           <td>{{getNbRep(q.id,detailQ.id,rep.split("#")[1])}}</td>
+           <td>{{getNbRep(q.id,detailQ.id,rep.split("#")[1])*100/getNbRepTotal(q.id,detailQ.id,rep.split("#")[1])}}<label style="margin-left: 0.5em">%</label></td>
          </tr>
-         <tr>
-            <td>reponse 2</td>
-            <td>20</td>
-            <td>10%</td>
-          </tr>
        </table>
-      </div>
+     </div>
    </div>
    <div class="modal-footer">
      <input type="button"   value="imprimer" class="btn btn-primary" />
